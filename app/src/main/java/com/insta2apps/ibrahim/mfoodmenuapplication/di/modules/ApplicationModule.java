@@ -3,7 +3,9 @@ package com.insta2apps.ibrahim.mfoodmenuapplication.di.modules;
 import android.app.Application;
 import android.content.Context;
 
+import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.database.RealmManager;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.network.RequestManager;
+import com.insta2apps.ibrahim.mfoodmenuapplication.domain.LoadFoodMenuUseCase;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -11,6 +13,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.realm.Realm;
 
 /**
  * Created by Ibrahim AbdelGawad on 3/11/2018.
@@ -45,5 +48,16 @@ public class ApplicationModule {
     @Singleton
     RequestManager provideRequestManager() {
         return RequestManager.getInstance();
+    }
+
+    @Provides
+    Realm provideRealm() {
+        return Realm.getDefaultInstance();
+    }
+
+    @Provides
+    @Singleton
+    RealmManager provideRealmManager() {
+        return RealmManager.getRealmManagerInstance();
     }
 }

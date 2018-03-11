@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.network.RequestManager;
 import com.insta2apps.ibrahim.mfoodmenuapplication.di.modules.ApplicationModule;
+import com.insta2apps.ibrahim.mfoodmenuapplication.view.MainActivity;
 
 import javax.inject.Singleton;
 
@@ -19,4 +20,5 @@ public interface ApplicationComponent {
     // Exposing the application Context
     Context context();
     RequestManager requestManager();
+    void inject(MainActivity mainActivity);
 }

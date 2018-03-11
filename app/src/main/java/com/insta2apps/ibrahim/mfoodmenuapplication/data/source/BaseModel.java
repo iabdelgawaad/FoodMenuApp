@@ -1,5 +1,7 @@
 package com.insta2apps.ibrahim.mfoodmenuapplication.data.source;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 import io.realm.RealmObject;
@@ -8,7 +10,7 @@ import io.realm.RealmObject;
  * Created by Ibrahim AbdelGawad on 3/11/2018.
  */
 
-public class BaseModel extends RealmObject implements Serializable {
+public class BaseModel implements Serializable {
     private String errorCode;
     private String error;
 
