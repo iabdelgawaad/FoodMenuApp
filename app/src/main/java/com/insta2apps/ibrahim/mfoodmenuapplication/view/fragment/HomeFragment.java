@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.insta2apps.ibrahim.mfoodmenuapplication.MFoodMenuApplication;
 import com.insta2apps.ibrahim.mfoodmenuapplication.R;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
+import com.insta2apps.ibrahim.mfoodmenuapplication.view.activity.MainActivity;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.adapter.ItemsAdapter;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.base.BaseFragment;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.presenter.HomePresenter;
@@ -86,7 +87,7 @@ public class HomeFragment extends BaseFragment implements HomePresenter.View, It
 
     @Override
     public void openItemDetail(Item item) {
-
+        ((MainActivity)getActivity()).pushFragment(FoodMenuItemDetailFragment.newInstance(item));
     }
 
     @Override
