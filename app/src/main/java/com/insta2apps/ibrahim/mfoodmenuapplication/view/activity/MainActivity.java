@@ -1,4 +1,4 @@
-package com.insta2apps.ibrahim.mfoodmenuapplication.view;
+package com.insta2apps.ibrahim.mfoodmenuapplication.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

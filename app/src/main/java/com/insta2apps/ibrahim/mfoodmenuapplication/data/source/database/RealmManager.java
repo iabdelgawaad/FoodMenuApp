@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 /**
  * Created by Ibrahim AbdelGawad on 3/11/2018.
@@ -21,7 +20,7 @@ public class RealmManager {
     Realm mRealm;
 
     RealmManager() {
-       RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(MFoodMenuApplication.getInstance())
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(MFoodMenuApplication.getInstance())
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);

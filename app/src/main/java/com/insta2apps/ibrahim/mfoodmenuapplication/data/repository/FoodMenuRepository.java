@@ -39,6 +39,7 @@ public class FoodMenuRepository {
         return Observable.create(new ObservableOnSubscribe<List<Item>>() {
             @Override
             public void subscribe(ObservableEmitter<List<Item>> emitter) {
+
             }
         });
     }

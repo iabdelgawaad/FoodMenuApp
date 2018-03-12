@@ -40,6 +40,7 @@ public class LoadFoodMenuUseCase extends UseCase<List<Item>> {
                     List<Item> itemList = new ArrayList<>();
                     if (foodMenuModel != null && foodMenuModel.getItems() != null && foodMenuModel.getItems().size() > 0) {
                         itemList = foodMenuModel.getItems();
+                        //TODO: Cashing data (Realm Or Room !)
                     }
                     return itemList;
                 }
