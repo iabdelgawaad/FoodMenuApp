@@ -1,15 +1,15 @@
 package com.insta2apps.ibrahim.mfoodmenuapplication.data.source;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import android.arch.persistence.room.Entity;
 
-import io.realm.annotations.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Ibrahim AbdelGawad on 3/11/2018.
  */
-
-public class Item extends BaseModel{
+@Entity(tableName = "FoodMenuItem")
+public class Item extends BaseModel {
+    @android.arch.persistence.room.PrimaryKey
     @SerializedName("id")
     private Integer id;
     @SerializedName("name")

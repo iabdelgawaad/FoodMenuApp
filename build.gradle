@@ -42,4 +42,5 @@ ext {
     retrofitVersion = '2.3.0'
     okhttpVersion = '3.4.0'
     butterknife = '8.4.0'
+    archRoomVersion = "1.0.0-rc1"
 }

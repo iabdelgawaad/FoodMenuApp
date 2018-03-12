@@ -2,6 +2,9 @@ package com.insta2apps.ibrahim.mfoodmenuapplication.di.components;
 
 import android.content.Context;
 
+import com.insta2apps.ibrahim.mfoodmenuapplication.data.repository.FoodMenuRepository;
+import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.database.room.AppDatabase;
+import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.database.room.FoodMenuItemDao;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.network.RequestManager;
 import com.insta2apps.ibrahim.mfoodmenuapplication.di.modules.ApplicationModule;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.activity.MainActivity;
@@ -22,6 +25,8 @@ public interface ApplicationComponent {
     // Exposing the application Context
     Context context();
     RequestManager requestManager();
+    FoodMenuItemDao foodMenuItemDao();
+    AppDatabase mAppDatabase();
     void inject(MainActivity mainActivity);
     void inject(HomeFragment homeFragment);
     void inject(FoodMenuItemDetailFragment foodMenuItemDetailFragment);
