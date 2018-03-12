@@ -1,5 +1,5 @@
 # FoodMenuApp
-Simple android weather app developed in Java, demonstrating the use of RxJava, Retrofit, MVP and Clean code architecture. 
+Simple android food app developed in Java, demonstrating the use of RxJava, Retrofit, MVP and Clean code architecture. 
 
 #Tools & Technologies
 - RXAndroid 
