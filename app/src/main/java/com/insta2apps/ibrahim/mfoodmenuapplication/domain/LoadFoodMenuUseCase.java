@@ -4,7 +4,6 @@ import com.insta2apps.ibrahim.mfoodmenuapplication.data.repository.FoodMenuRepos
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.FoodMenuModel;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,23 +31,22 @@ public class LoadFoodMenuUseCase extends UseCase<List<Item>> {
 
     @Override
     protected Observable<List<Item>> createObservableUseCase(Map<String, Object> map) {
-        long count = foodMenuRepository.getLocalFoodMenuItemsCount();
-        if (count == 0) {
-            return foodMenuRepository.loadFoodMenuListRemotely().map(new Function<FoodMenuModel, List<Item>>() {
-                @Override
-                public List<Item> apply(FoodMenuModel foodMenuModel) throws Exception {
-                    List<Item> itemList = new ArrayList<>();
-                    if (foodMenuModel != null && foodMenuModel.getItems() != null && foodMenuModel.getItems().size() > 0) {
-                        itemList = foodMenuModel.getItems();
-                        //TODO: Realm
-                        //current Room
-                        foodMenuRepository.saveFoodMenuListLocally(itemList);
-                    }
-                    return itemList;
+        return foodMenuRepository.getLocalFoodMenuItemsCount().toObservable().flatMap(new Function<Long, Observable<List<Item>>>() {
+            @Override
+            public Observable<List<Item>> apply(Long aLong) throws Exception {
+                if (aLong == 0) {
+                    return foodMenuRepository.loadFoodMenuListRemotely().map(new Function<FoodMenuModel, List<Item>>() {
+                        @Override
+                        public List<Item> apply(FoodMenuModel foodMenuModel) throws Exception {
+                            List<Item> itemList = foodMenuModel.getItems();
+                            foodMenuRepository.saveFoodMenuListLocally(itemList);
+                            return itemList;
+                        }
+                    });
+                } else {
+                    return foodMenuRepository.loadFoodMenuListLocally();
                 }
-            });
-        } else {
-            return foodMenuRepository.loadFoodMenuListLocally();
-        }
+            }
+        });
     }
 }

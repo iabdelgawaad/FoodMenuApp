@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -20,7 +21,7 @@ import io.reactivex.ObservableOnSubscribe;
  * Created by Ibrahim AbdelGawad on 3/11/2018.
  */
 
-public  class FoodMenuRepository {
+public class FoodMenuRepository {
 
     private final RequestManager requestManager;
     private final FoodMenuItemDao foodMenuItemDao;
@@ -47,7 +48,7 @@ public  class FoodMenuRepository {
         });
     }
 
-    public long getLocalFoodMenuItemsCount() {
+    public Flowable<Long> getLocalFoodMenuItemsCount() {
         return foodMenuItemDao.countFoodMenuItems();
     }
 

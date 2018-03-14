@@ -25,7 +25,7 @@ public class ApplicationModule {
 
     public ApplicationModule(Application mFoodMenuApplication) {
         this.mFoodMenuApplication = mFoodMenuApplication;
-        appDatabase = Room.databaseBuilder(mFoodMenuApplication, AppDatabase.class, "mFood-db").allowMainThreadQueries().build();
+        appDatabase = Room.databaseBuilder(mFoodMenuApplication, AppDatabase.class, "mFood-db").build();
     }
 
     @Provides

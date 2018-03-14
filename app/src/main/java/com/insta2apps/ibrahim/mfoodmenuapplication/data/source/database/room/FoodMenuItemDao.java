@@ -9,6 +9,8 @@ import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+
 /**
  * Created by Ibrahim AbdelGawad on 3/12/2018.
  */
@@ -19,7 +21,7 @@ public interface FoodMenuItemDao {
     List<Item> getAll();
 
     @Query("SELECT COUNT(*) from foodmenuitem")
-    long countFoodMenuItems();
+    Flowable<Long> countFoodMenuItems();
 
     @Insert
     void insertAll(Item... items);
