@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.FoodMenuModel;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
-import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.database.RealmManager;
+import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.database.room.FoodMenuItemDao;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.network.API;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.network.RequestManager;
 
@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -23,12 +24,12 @@ import io.reactivex.ObservableOnSubscribe;
 public class FoodMenuRepository {
 
     private final RequestManager requestManager;
-    private final RealmManager realmManager;
+    private final FoodMenuItemDao foodMenuItemDao;
 
     @Inject
-    public FoodMenuRepository(@NonNull RequestManager requestManager, @NonNull RealmManager realmManager) {
+    public FoodMenuRepository(@NonNull RequestManager requestManager, FoodMenuItemDao foodMenuItemDao) {
         this.requestManager = requestManager;
-        this.realmManager = realmManager;
+        this.foodMenuItemDao = foodMenuItemDao;
     }
 
     public Observable<FoodMenuModel> loadFoodMenuListRemotely() {
@@ -39,16 +40,21 @@ public class FoodMenuRepository {
         return Observable.create(new ObservableOnSubscribe<List<Item>>() {
             @Override
             public void subscribe(ObservableEmitter<List<Item>> emitter) {
-
+                List<Item> itemList = null;
+                itemList = foodMenuItemDao.getAll();
+                emitter.onNext(itemList);
+                emitter.onComplete();
             }
         });
     }
 
-    public long getLocalFoodMenuItemsCount() {
-        return 0;
+    public Flowable<Long> getLocalFoodMenuItemsCount() {
+        return foodMenuItemDao.countFoodMenuItems();
     }
 
-    public void saveFoodMenuList(List<Item> carList) {
-        realmManager.saveAllFoodMenuItems(carList);
+    public void saveFoodMenuListLocally(List<Item> items) {
+        for (Item item : items) {
+            foodMenuItemDao.insertAll(item);
+        }
     }
 }
