@@ -1,12 +1,13 @@
 # FoodMenuApp
-Simple android food app developed in Java, demonstrating the use of RxJava, Retrofit, MVP and Clean code architecture. 
+Sample android app developed in Java to show case RxJava, Retrofit, MVP, Room and Clean code architecture.
 
 #Tools & Technologies
 - RXAndroid 
 - Retrofit 
 - Picasso 
 - Butter Knife
+- Data Caching (Room)
 
 #TODO
-- Data Caching (Room | Realm)
+- Caching (Realm)
 - Unit Testing 
