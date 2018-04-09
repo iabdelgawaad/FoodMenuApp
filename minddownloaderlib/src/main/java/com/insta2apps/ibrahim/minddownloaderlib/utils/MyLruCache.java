@@ -1,13 +1,14 @@
 package com.insta2apps.ibrahim.minddownloaderlib.utils;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.util.LruCache;
 
 import com.insta2apps.ibrahim.minddownloaderlib.interfaces.Cache;
 
 /**
  * Created by Ibrahim AbdelGawad on 4/8/2018.
- *
+ * <p>
  * Generic caching class support all types (Image, text,..etc)
  */
 
@@ -29,7 +30,7 @@ public class MyLruCache<T> extends LruCache implements Cache<T> {
     protected int sizeOf(Object key, Object value) {
         // The cache size will be measured in kilobytes rather than
         // number of items.
-        return ((Bitmap)value).getByteCount() / 1024;
+            return ((Bitmap) value).getByteCount() / 1024;
     }
 
     public static synchronized MyLruCache getInstance(int cacheSize) {
@@ -57,5 +58,10 @@ public class MyLruCache<T> extends LruCache implements Cache<T> {
     @Override
     public int getMaximumCacheSize() {
         return maxSize;
+    }
+
+    @Override
+    protected void entryRemoved(boolean evicted, Object key, Object oldValue, Object newValue) {
+        super.entryRemoved(evicted, key, oldValue, newValue);
     }
 }
