@@ -68,7 +68,8 @@ public class ItemsAdapter extends BaseAdapter<Item> {
         @Override
         public void bindViewData(Item foodMenu, int position) {
             if (!TextUtils.isEmpty(foodMenu.getPhotoUrl())) {
-                MindDownLoader.Request.getBitmap(mContext).load(foodMenu.getPhotoUrl()).into(new Target<Bitmap>() {
+                MindDownLoader.Request.Builder load = MindDownLoader.Request.getBitmap(mContext).load(foodMenu.getPhotoUrl());
+                load.into(new Target<Bitmap>() {
                     @Override
                     public void success(Bitmap value) {
                         imvItem.setImageBitmap(value);

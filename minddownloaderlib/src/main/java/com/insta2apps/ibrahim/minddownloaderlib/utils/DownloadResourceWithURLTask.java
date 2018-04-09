@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 /**
  * Created by Ibrahim AbdelGawad on 4/8/2018.
- *
+ * <p>
  * General resource downloading class support all types (Image, pdf, ...etc)
  */
 
@@ -65,7 +65,9 @@ public class DownloadResourceWithURLTask<T> extends AsyncTask<String, Void, T> {
 
     @Override
     protected void onPostExecute(T t) {
-        target.success(t);
-        cache.set(url, t);
+        if (!isCancelled()) {
+            target.success(t);
+            cache.set(url, t);
+        }
     }
 }

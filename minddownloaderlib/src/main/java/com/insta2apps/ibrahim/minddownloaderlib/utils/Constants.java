@@ -1,7 +1,6 @@
 package com.insta2apps.ibrahim.minddownloaderlib.utils;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 
 /**
@@ -9,6 +8,7 @@ import android.content.Context;
  */
 
 public class Constants {
+
 
     public static int getDefaultCacheSize(Context context) {
         // Get max available VM memory, exceeding this amount will throw an

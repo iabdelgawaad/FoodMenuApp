@@ -122,9 +122,8 @@ public class MindDownLoader {
             // if not, start downloading
 
             //FIXME: How to cancel requests based on targets
-            cancelRequest(request.target);
+            // cancelRequest(request.target);
 
-            //FIXME: How to handle pending requests
             // So that it wouldn't download same URL twice
             if (requestsMap.containsKey(request.url)) {
                 // Then don't download again
@@ -145,6 +144,11 @@ public class MindDownLoader {
 
         void cancelRequest(Target<?> target) {
             //Search for this target in `requestsMap` and cancel it if it exists
+            for (Map.Entry<String, Request<?>> entry : requestsMap.entrySet()) {
+                if (entry.getValue().target.equals(target)) {
+                    //...!!
+                }
+            }
         }
 
         private Bitmap getPlaceholderDrawable(Request request) {
