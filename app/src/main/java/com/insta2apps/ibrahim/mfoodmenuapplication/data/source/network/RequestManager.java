@@ -30,7 +30,7 @@ public class RequestManager {
         // Allowing children classes to update the config object, couple of things are to be noted here
         // 1- This is done before adding the headers interceptor so that it includes all headers (common and child's)
         // 2- Any Converters added by children will be added first and has priority over the default converter
-        // 3- Any CallAdapters added by children will be added first and has priority over default call adapter
+        // 3- Any CallAdapters added by children will be added first and has priority over default call MindAdapter
         commonConfig = updateRequestConfig(commonConfig);
 
 
@@ -41,7 +41,7 @@ public class RequestManager {
             commonConfig.addInterceptor(loggingInterceptor);
         }
 
-        // Adding default converters and call adapters
+        // Adding default converters and call com.insta2apps.ibrahim.minddownloaderlib.adapters
 
         commonConfig.addConverterFactory(GsonConverterFactory.create(getCommonGsonInstance()));
 

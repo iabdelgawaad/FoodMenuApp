@@ -29,7 +29,7 @@ public class BasePresenter<T extends BasePresenter.View> {
 
     /**
      * Checks if a view is attached to this presenter. You should always call this method before
-     * calling {@link #getView()} to get the view instance.
+     * calling {@link #getView()} to pop the view instance.
      */
     public boolean isViewAttached() {
         return viewRef != null && viewRef.get() != null;

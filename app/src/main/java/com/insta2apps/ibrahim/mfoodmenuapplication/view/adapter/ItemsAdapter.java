@@ -1,14 +1,17 @@
 package com.insta2apps.ibrahim.mfoodmenuapplication.view.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.insta2apps.ibrahim.mfoodmenuapplication.R;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
-import com.squareup.picasso.Picasso;
+import com.insta2apps.ibrahim.minddownloaderlib.MindDownLoader;
+import com.insta2apps.ibrahim.minddownloaderlib.interfaces.Target;
 
 import java.util.List;
 
@@ -65,10 +68,23 @@ public class ItemsAdapter extends BaseAdapter<Item> {
         @Override
         public void bindViewData(Item foodMenu, int position) {
             if (!TextUtils.isEmpty(foodMenu.getPhotoUrl())) {
-                Picasso.with(mContext).load(foodMenu.getPhotoUrl()).placeholder(R.drawable.item_default).into(imvItem);
+                MindDownLoader.Request.getBitmap(mContext).load(foodMenu.getPhotoUrl()).into(new Target<Bitmap>() {
+                    @Override
+                    public void success(Bitmap value) {
+                        imvItem.setImageBitmap(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        imvItem.setImageResource(R.drawable.item_default);
+                        Toast.makeText(mContext, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             } else {
-                Picasso.with(mContext).load(R.drawable.item_default).into(imvItem);
+                imvItem.setImageResource(R.drawable.item_default);
             }
+
             txtItemName.setText(foodMenu.getName());
         }
     }

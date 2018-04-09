@@ -1,5 +1,6 @@
 package com.insta2apps.ibrahim.mfoodmenuapplication.view.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +15,8 @@ import com.insta2apps.ibrahim.mfoodmenuapplication.R;
 import com.insta2apps.ibrahim.mfoodmenuapplication.data.source.Item;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.base.BaseFragment;
 import com.insta2apps.ibrahim.mfoodmenuapplication.view.presenter.FoodMenuItemDetailPresenter;
-import com.squareup.picasso.Picasso;
+import com.insta2apps.ibrahim.minddownloaderlib.MindDownLoader;
+import com.insta2apps.ibrahim.minddownloaderlib.interfaces.Target;
 
 import javax.inject.Inject;
 
@@ -82,10 +84,23 @@ public class FoodMenuItemDetailFragment extends BaseFragment implements FoodMenu
     public void showItem(Item item) {
         titleTextView.setText(item.getName());
         if (!TextUtils.isEmpty(item.getPhotoUrl())) {
-            Picasso.with(mContext).load(item.getPhotoUrl()).placeholder(R.drawable.item_default).into(itemImageView);
+            MindDownLoader.Request.getBitmap(mContext).load(item.getPhotoUrl())
+                    .into(new Target<Bitmap>() {
+                        @Override
+                        public void success(Bitmap values) {
+                            itemImageView.setImageBitmap(values);
+                        }
+
+                        @Override
+                        public void onError(Throwable throwable) {
+                            itemImageView.setImageResource(R.drawable.item_default);
+                        }
+                    });
+
         } else {
-            Picasso.with(mContext).load(R.drawable.item_default).into(itemImageView);
+            itemImageView.setImageResource(R.drawable.item_default);
         }
+
         descriptionTextView.setText(item.getDescription());
         descriptionTextView.setMovementMethod(new ScrollingMovementMethod());
     }

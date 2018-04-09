@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MFoodMenuApplication.iml" filepath="$PROJECT_DIR$/MFoodMenuApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/minddownloaderlib/minddownloaderlib.iml" filepath="$PROJECT_DIR$/minddownloaderlib/minddownloaderlib.iml" />
     </modules>
   </component>
 </project>

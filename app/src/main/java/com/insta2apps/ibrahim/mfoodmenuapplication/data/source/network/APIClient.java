@@ -54,7 +54,7 @@ public class APIClient {
             builder.addConverterFactory(converterFactory);
         }
 
-        // Add custom call adapter factories
+        // Add custom call Adapter factories
         for (CallAdapter.Factory callAdapterFactory : requestConfig.getCallAdapterFactories()) {
             builder.addCallAdapterFactory(callAdapterFactory);
         }
