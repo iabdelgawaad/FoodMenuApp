@@ -93,6 +93,11 @@ public class MindDownLoader {
                 return this;
             }
 
+            public void clearAll() {
+                if (this.cache != null)
+                    this.cache.evictAll();
+            }
+
             public void into(Target<T> target) {
                 this.target = target;
                 Request<T> request = new Request<>(this);
