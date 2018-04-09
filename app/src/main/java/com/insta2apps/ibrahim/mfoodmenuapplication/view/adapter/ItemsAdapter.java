@@ -68,8 +68,7 @@ public class ItemsAdapter extends BaseAdapter<Item> {
         @Override
         public void bindViewData(Item foodMenu, int position) {
             if (!TextUtils.isEmpty(foodMenu.getPhotoUrl())) {
-                MindDownLoader.Request.Builder load = MindDownLoader.Request.getBitmap(mContext).load(foodMenu.getPhotoUrl());
-                load.into(new Target<Bitmap>() {
+                MindDownLoader.Request.getBitmap(mContext).load(foodMenu.getPhotoUrl()).into(new Target<Bitmap>() {
                     @Override
                     public void success(Bitmap value) {
                         imvItem.setImageBitmap(value);
@@ -78,7 +77,6 @@ public class ItemsAdapter extends BaseAdapter<Item> {
                     @Override
                     public void onError(Throwable throwable) {
                         imvItem.setImageResource(R.drawable.item_default);
-                        Toast.makeText(mContext, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
