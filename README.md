@@ -1,12 +1,10 @@
-# FoodMenuApp
+# Mind valley Demo App
 Simple android food app developed in Java, demonstrating the use of RxJava, Retrofit, MVP and Clean code architecture. 
 
 #Tools & Technologies
 - RXAndroid 
 - Retrofit 
-- Picasso 
+- Mind Lib for Image Cachingand Downloading
 - Butter Knife
-
-#TODO
-- Data Caching (Room | Realm)
 - Unit Testing 
+
