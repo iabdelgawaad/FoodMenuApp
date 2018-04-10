@@ -29,6 +29,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     testImplementation 'junit:junit:4.12'
@@ -64,4 +67,18 @@ dependencies {
     compile 'android.arch.lifecycle:runtime:'+ rootProject.archRoomVersion;
     compile 'android.arch.lifecycle:extensions:'+ rootProject.archRoomVersion;
     implementation project(':minddownloaderlib')
+
+    // Dependencies for local unit tests
+    testCompile "org.mockito:mockito-all:1.10.19"
+    androidTestCompile "org.mockito:mockito-android:$rootProject.ext.mockitoVersion"
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
+
+    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
+
 }

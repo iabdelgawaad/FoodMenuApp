@@ -19,6 +19,10 @@ public class Item extends BaseModel {
     @SerializedName("description")
     private String description;
 
+    public Item ()
+    {
+
+    }
     public Integer getId() {
         return id;
     }

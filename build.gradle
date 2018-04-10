@@ -32,7 +32,8 @@ ext {
     targetSdkVersion = 26
     compileSdkVersion = 26
     buildToolsVersion = '26.0.2'
-
+    junitVersion = '4.12'
+    mockitoVersion = '2.8.47'
     // App dependencies
     supportLibraryVersion = '26.+'
     guavaVersion = '18.0'

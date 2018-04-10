@@ -23,29 +23,19 @@ public class LoadFoodMenuUseCase extends UseCase<List<Item>> {
     private FoodMenuRepository foodMenuRepository;
 
     @Inject
-    LoadFoodMenuUseCase(@Named("executor_thread") Scheduler executorThread,
-                        @Named("ui_thread") Scheduler uiThread, FoodMenuRepository foodMenuRepository) {
+    public LoadFoodMenuUseCase(@Named("executor_thread") Scheduler executorThread,
+                               @Named("ui_thread") Scheduler uiThread, FoodMenuRepository foodMenuRepository) {
         super(executorThread, uiThread);
         this.foodMenuRepository = foodMenuRepository;
     }
 
     @Override
-    protected Observable<List<Item>> createObservableUseCase(Map<String, Object> map) {
-        return foodMenuRepository.getLocalFoodMenuItemsCount().toObservable().flatMap(new Function<Long, Observable<List<Item>>>() {
+    public Observable<List<Item>> createObservableUseCase(Map<String, Object> map) {
+        return foodMenuRepository.loadFoodMenuListRemotely().map(new Function<FoodMenuModel, List<Item>>() {
             @Override
-            public Observable<List<Item>> apply(Long aLong) throws Exception {
-                if (aLong == 0) {
-                    return foodMenuRepository.loadFoodMenuListRemotely().map(new Function<FoodMenuModel, List<Item>>() {
-                        @Override
-                        public List<Item> apply(FoodMenuModel foodMenuModel) throws Exception {
-                            List<Item> itemList = foodMenuModel.getItems();
-                            foodMenuRepository.saveFoodMenuListLocally(itemList);
-                            return itemList;
-                        }
-                    });
-                } else {
-                    return foodMenuRepository.loadFoodMenuListLocally();
-                }
+            public List<Item> apply(FoodMenuModel foodMenuModel) throws Exception {
+                List<Item> itemList = foodMenuModel.getItems();
+                return itemList;
             }
         });
     }
