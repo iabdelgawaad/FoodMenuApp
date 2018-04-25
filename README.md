@@ -1,4 +1,5 @@
-# Mind Valley Demo App
+# Image Downloading and Caching Library
+
 Simple android food app developed in Java, demonstrating the use of RxJava, Retrofit, MVP and Clean code architecture. 
 
 #Tools & Technologies
